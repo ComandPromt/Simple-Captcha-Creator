@@ -22,6 +22,12 @@ class SimpleCaptcha {
      * smaller then 0 and bigger than 2 is caped to min or max
      */
 
+   public $fontSize = 50;  // Tamaño de la fuente
+    public $xPosition = 3;  // Posición X del texto
+    public $yPosition = 90; // Posición Y del texto
+    public $lineWidth = 3;  // Ancho de la línea
+    public $scale = 3;   
+	private $angle;
     public $difficulty = 1;
 
     /** Width of the image */
@@ -103,8 +109,32 @@ class SimpleCaptcha {
     public $im;
 
     public function __construct($config = array()) {
-
-    }
+		
+		if (isset($config['fontSize'])) {
+            $this->fontSize = $config['fontSize'];
+        }
+		
+        if (isset($config['xPosition'])) {
+            $this->xPosition = $config['xPosition'];
+        }
+        
+		if (isset($config['yPosition'])) {
+            $this->yPosition = $config['yPosition'];
+        }
+        
+		if (isset($config['lineWidth'])) {
+            $this->lineWidth = $config['lineWidth'];
+        }
+        
+		if (isset($config['scale'])) {
+            $this->scale = $config['scale'];
+        }
+		
+		if (isset($config['angle'])) {
+            $this->angle = $angle;
+        }
+		
+	}
 
     public function CreateImage() {
 
@@ -380,7 +410,7 @@ class SimpleCaptcha {
 
     protected function ReduceImage() {
        
-	   // Reduzco el tama�o de la imagen
+	   // Reduzco el tamaño de la imagen
 
         $imResampled = imagecreatetruecolor($this->width, $this->height);
 
@@ -528,8 +558,8 @@ class SimpleCaptcha {
 		
 		$this->WaveImage();
 		
-		imagettftext($this->im, 40,350, 10, 40, imagecolorallocate($this->im,$red,$green,$blue), 'resources/fonts/'.$font,$text);
-		
+		imagettftext($this->im, $this->fontSize, $this->angle, $this->xPosition, $this->yPosition, imagecolorallocate($this->im, $red, $green, $blue), 'resources/fonts/'.$font, $text);
+  
 		header("Content-type: image/png");
 		
 		imagepng($this->im);
@@ -540,7 +570,7 @@ class SimpleCaptcha {
         
 		imagedestroy($this->im);
     
-    }
+	}
 
 }
 
