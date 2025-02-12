@@ -39,23 +39,23 @@ class SimpleCaptcha {
 	
     public $session_var;
     
-	private $numChars; // Número de caracteres en el CAPTCHA
+	private $numChars; // NÃºmero de caracteres en el CAPTCHA
     
-	private $backgroundImages = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png']; // Lista de imágenes de fondo disponibles en el servidor
+	private $backgroundImages = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png']; // Lista de imÃ¡genes de fondo disponibles en el servidor
     
 	private $centerText; // Booleano para centrar el texto
     
-	private $xOffset = 0; // Desplazamiento horizontal en píxeles
+	private $xOffset = 0; // Desplazamiento horizontal en pÃ­xeles
     
 	private $useContrastEffect; // Variable para controlar si se debe usar el efecto de contraste
 
     /**
-     * Constructor que inicializa el número de caracteres del CAPTCHA, el ancho de la imagen, si centrar el texto, el desplazamiento horizontal y el efecto de contraste.
+     * Constructor que inicializa el nÃºmero de caracteres del CAPTCHA, el ancho de la imagen, si centrar el texto, el desplazamiento horizontal y el efecto de contraste.
      *
-     * @param int $numChars Número de caracteres del CAPTCHA.
+     * @param int $numChars NÃºmero de caracteres del CAPTCHA.
      * @param int $width Ancho de la imagen.
      * @param bool $centerText Si es true, centra el texto.
-     * @param int $xOffset Desplazamiento en píxeles en la dirección X.
+     * @param int $xOffset Desplazamiento en pÃ­xeles en la direcciÃ³n X.
      * @param bool $useContrastEffect Si es true, utiliza el efecto de contraste de colores.
      */
 	 
@@ -113,15 +113,15 @@ class SimpleCaptcha {
 
         $phaseShift = 180; // Cambia el desplazamiento de fase aleatoriamente
         
-		$amplitude = 10; // Define la amplitud máxima de la onda
+		$amplitude = 10; // Define la amplitud mÃ¡xima de la onda
         
 		$frequency = 20; // Controla la frecuencia de la onda
         
-		$x = 10; // Posición inicial en X
+		$x = 10; // PosiciÃ³n inicial en X
         
-		$angle = rand(-10, 10); // Define un ángulo inicial aleatorio
+		$angle = rand(-10, 10); // Define un Ã¡ngulo inicial aleatorio
 
-        // Si se debe centrar el texto, calcular la posición inicial X
+        // Si se debe centrar el texto, calcular la posiciÃ³n inicial X
         
 		if ($this->centerText) {
             
@@ -149,11 +149,11 @@ class SimpleCaptcha {
 			
         }
 
-        // Verificar si se está usando el efecto de contraste
+        // Verificar si se estÃ¡ usando el efecto de contraste
 		
         if ($this->useContrastEffect) {
 			
-            // Si el efecto de contraste está habilitado, aplicar el contraste basado en la imagen de fondo
+            // Si el efecto de contraste estÃ¡ habilitado, aplicar el contraste basado en la imagen de fondo
             
 			$textColor = $this->GetContrastingColor($bgImage, $x, $amplitude);
         
@@ -177,13 +177,24 @@ class SimpleCaptcha {
 						
                         if($background == '6.png'){
 							
+							$this->eliminarColor([22, 163, 35]);
+							
+							$this->eliminarColor([235,59,124]);
+							
+							$this->eliminarColor([235,59,124]);
+							
                             $this->eliminarColor([27, 78, 181]); // Eliminar color azul
+							
 							$this->eliminarColor([0, 0, 0]);
-                        }
+                        
+						}
 						
 						else{
 							
 							// case 1
+							
+							$this->eliminarColor([27,78,181]);
+							
 							$this->eliminarColor([255,255,255]);
 							
 							$this->eliminarColor([235,223,59]);
@@ -215,6 +226,12 @@ class SimpleCaptcha {
                         break;
 						
                     case '8.png':
+				
+						$this->eliminarColor([22, 163, 35]);
+					
+						$this->eliminarColor([235,59,124]);
+					
+						$this->eliminarColor([235,59,196]);
 					
 						$this->eliminarColor([235,223,59]);
 					
@@ -226,14 +243,16 @@ class SimpleCaptcha {
 					
 						$this->eliminarColor([0, 0, 0]);
 					
-                        $this->eliminarColor([27, 78, 181]); // Eliminar color azul
+                        $this->eliminarColor([27, 78, 181]);
 						
-                        $this->eliminarColor([214, 36, 7]); // Eliminar color rojo
+                        $this->eliminarColor([214, 36, 7]);
 						
                         break;
 						
                     case '3.png':
-										
+					
+						$this->eliminarColor([214,36,7]);
+							
 						$this->eliminarColor([244,148,41]);
 					
 						$this->eliminarColor([233,235,59]);
@@ -242,9 +261,9 @@ class SimpleCaptcha {
 						
 						$this->eliminarColor([235,59,196]); 
                         
-						$this->eliminarColor([255, 255, 255]); // Eliminar color blanco
+						$this->eliminarColor([255, 255, 255]);
 						
-                        $this->eliminarColor([22, 163, 35]); // Eliminar color verde
+                        $this->eliminarColor([22, 163, 35]);
 						
 						$this->eliminarColor([218,43,227]);
 						
@@ -263,6 +282,8 @@ class SimpleCaptcha {
                         break;
 						
 					   case '4.png':
+				
+						$this->eliminarColor([22, 163, 35]);
 				
 						$this->eliminarColor([214, 36, 7]);
 				
@@ -296,9 +317,11 @@ class SimpleCaptcha {
 					
                     case '7.png':
 					
-                        $this->eliminarColor([27, 78, 181]); // Eliminar color azul
+                        $this->eliminarColor([27, 78, 181]);
 						
                         if($background == '5.png'){
+							
+							$this->eliminarColor([235,59,124]);
 							
 							$this->eliminarColor([218,43,227]);
 							
@@ -314,7 +337,7 @@ class SimpleCaptcha {
 							
 							$this->eliminarColor([59,235,141]);
                             
-							$this->eliminarColor([255, 255, 255]); // Eliminar color blanco
+							$this->eliminarColor([255, 255, 255]);
 							
 							$this->eliminarColor([22, 163, 35]);
 							 
@@ -337,6 +360,8 @@ class SimpleCaptcha {
                         break;
 						
 						case '2.png':
+	 
+							$this->eliminarColor([255,255,255]);
 	 
 							$this->eliminarColor([235,59,196]);
 		
@@ -364,6 +389,8 @@ class SimpleCaptcha {
 						
 						case '9.png':
 						
+							$this->eliminarColor([27,78,181]);
+						
 							$this->eliminarColor([0, 0, 0]);
 						 
 							$this->eliminarColor([218, 218, 218]);
@@ -380,7 +407,7 @@ class SimpleCaptcha {
 				
                 $letter = $text[$i];
 
-                // Calcula la posición Y con la onda sinusoidal
+                // Calcula la posiciÃ³n Y con la onda sinusoidal
 				
                 $y = (($this->height / 2) + sin(deg2rad($x * $frequency + $phaseShift)) * $amplitude) + 8;
 
@@ -390,11 +417,11 @@ class SimpleCaptcha {
 				
                 imagettftext($im, $this->fontSize, $angle, $x, $y, $textColor, $font, $letter);
 
-                // Incrementa X y varía ligeramente el ángulo para dar un efecto más dinámico
+                // Incrementa X y varÃ­a ligeramente el Ã¡ngulo para dar un efecto mÃ¡s dinÃ¡mico
 				
                 $x += $this->fontSize + rand(5, 8);
 				
-                $angle += rand(-5, 5); // Variación del ángulo entre letras
+                $angle += rand(-5, 5); // VariaciÃ³n del Ã¡ngulo entre letras
 				
             }
 			
@@ -434,7 +461,7 @@ class SimpleCaptcha {
 	 
     private function GetRandomCaptchaText($length) {
         
-		$chars = '01@?ABCDEFGHIJKLMNOPQRSTUVWXYZ23456789!abcdefghijklmnopqrstuvwxyz'; // Texto más simple para mejor legibilidad
+		$chars = '01@?ABCDEFGHIJKMNPQRSTUVWXYZ23456789!'; // Texto mÃ¡s simple para mejor legibilidad
         
 		$text = '';
         
@@ -449,11 +476,11 @@ class SimpleCaptcha {
     }
 
     /**
-     * Devuelve el color de texto con el mejor contraste según el fondo.
+     * Devuelve el color de texto con el mejor contraste segÃºn el fondo.
      *
      * @param resource $bgImage Imagen de fondo.
-     * @param int $x Posición X inicial para calcular el color.
-     * @param int $amplitude Amplitud de la onda para calcular la posición Y.
+     * @param int $x PosiciÃ³n X inicial para calcular el color.
+     * @param int $amplitude Amplitud de la onda para calcular la posiciÃ³n Y.
      * @return int Color del texto.
      */
 	 
@@ -491,9 +518,9 @@ class SimpleCaptcha {
 
 }
 
-// Crear y mostrar el CAPTCHA con 5 caracteres, sin el efecto de contraste, centrado y desplazamiento de 30 píxeles en X
+// Crear y mostrar el CAPTCHA con 5 caracteres, sin el efecto de contraste, centrado y desplazamiento de 30 pÃ­xeles en X
 
-$captcha = new SimpleCaptcha(5, 150, true, 30, false,'captcha2'); // Aquí se establece 'false' para no usar el contraste
+$captcha = new SimpleCaptcha(5, 150, true, 30, false,'captcha2'); // AquÃ­ se establece 'false' para no usar el contraste
 
 $captcha->CreateImage();
 
