@@ -227,6 +227,8 @@ class SimpleCaptcha {
 						
                     case '8.png':
 				
+						$this->eliminarColor([218, 218, 218]);
+				
 						$this->eliminarColor([22, 163, 35]);
 					
 						$this->eliminarColor([235,59,124]);
