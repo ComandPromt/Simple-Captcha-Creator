@@ -63,6 +63,10 @@ HTML;
 		<input type="text" name="captcha" id="captcha-form" autocomplete="off" /><br/>
 		<input type="submit" />
 	</form>
-
+	
+<img id="captcha2" src="captcha2.php" style="width:150px;height:80px;" loading="lazy" alt="captcha2"/>
+	
+<img id="captcha3" src="captcha3.php?var=captcha3" style="width:150px;height:80px;" loading="lazy" alt="captcha3"/>
+	
 </body>
 </html>
